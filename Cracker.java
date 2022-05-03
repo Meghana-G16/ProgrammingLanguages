@@ -1,3 +1,5 @@
+package com.unt.fdb.assignment.meghana.fdbassignmentmeghana;
+
 import java.util.*;
 
 class CrackerBoardMove
@@ -189,6 +191,20 @@ public class Cracker
         }
     }
 
+    static void printCrackerBoard(CrackerBoard b)
+    {
+        System.out.print("(" + b.pegCount + ", [");
+        for (int i = 0; i < b.cells.length; i++) {
+            if(i < b.cells.length - 1){
+                System.out.print( b.cells[i] + ", ");
+            }else{
+                System.out.print(b.cells[i] + "])");
+            }
+           
+        }
+        System.out.println();
+    }
+
     static void showBoard(CrackerBoard cb)
     {
         int[][] crackerBoardlines = { {4,0,0}, {3,1,2}, {2,3,5}, {1,6,9}, {0,10,14} };
@@ -199,12 +215,25 @@ public class Cracker
             int crackerBoardend    = crackerBoardline[2];
 
             String crackerBoardspace = new String();
-            for (int i = 0; i < crackerBoardspaces; i++)
+            int index1 = 0;
+            while (index1 < crackerBoardspaces){
                 crackerBoardspace += " ";
+                index1++;
+            }
+
+
 
             System.out.print(crackerBoardspace);
-            for (int i = crakerBoardbegin; i <= crackerBoardend; i++)
-                System.out.print(cb.cells[i] == 0 ? ". " : "x ");
+
+            for (int i = crakerBoardbegin; i <= crackerBoardend; i++){
+                if(cb.cells[i] == 0 ){
+                    System.out.print(". ");
+                }else{
+                    System.out.print( "x ");
+
+                }
+            }
+
 
             System.out.println();
         }
@@ -221,6 +250,20 @@ public class Cracker
             showBoard(b);
         }
 
+    }
+
+    static void terse() {
+        for (int i = 0; i < 15; i++) {
+            CrackerBoard b = new CrackerBoard(i);
+            System.out.println("************");
+            printCrackerBoard(b);
+            List<CrackerBoardMove> moves = firstSolution(b);
+            for (CrackerBoardMove m : moves) {
+                System.out.println(m);
+                b = b.move(m);
+            }
+            printCrackerBoard(b);
+        }
     }
 
     public static void main(String[] args) {
