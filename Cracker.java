@@ -1,5 +1,3 @@
-package com.unt.fdb.assignment.meghana.fdbassignmentmeghana;
-
 import java.util.*;
 
 class CrackerBoardMove
